@@ -9,7 +9,7 @@ import styled from 'styled-components';
 const AppWrapper = styled.div`
     border: 1px solid blue;
     margin: auto
-    width: 500px
+    max-width: 500px
 `;
 
 class App extends Component {

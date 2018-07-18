@@ -1,55 +1,52 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Div = styled.div`
-    font-size: 18px;
-`;
-
-const ReviewForm = () => (
-    <div>
-        <div>avatar</div>
-        <div>
-            <h2>Rate and review</h2>
-            <h3>Share your experience to help others</h3>
-            <p>star reviews</p>
-        </div>
-    </div>
-);
-
-const Review = () => (
-    <div>
-        <div>Avatar</div>
-        <div>
-            <h3>Anonym</h3>
-            <div>
-                <div>stars</div>
-                <div>12h ago - hitta.se</div>
-            </div>
-            <div>Liked it a lot .... !!</div>
-        </div>
-    </div>
-);
-
-const LatestReviews = () => (
-    <div>
-        <h2>Latest Reviews</h2>
-        <Review />
-    </div>
-);
+import RateReview from './RateReview';
+import LatestReviews from './LatestReviews';
 
 export default () => (
-    <Fragment>
-        <header>
+    <ReviewsPage>
+        <Header>
             <h1>Reviews</h1>
-            <div>4.1</div>
-            <div>from 27 ratings</div>
-            <Link to="/all-reviews">View all reviews</Link>
-        </header>
-        <ReviewForm />
+            <div className="general-stats">
+                <div>
+                    <div>4.1</div>
+                    <div>from 27 ratings</div>
+                </div>
+
+                <Link to="/all-reviews">View all reviews</Link>
+            </div>
+        </Header>
+        <RateReview />
         <LatestReviews />
-        <footer>
+        <Footer>
             <Link to="/all-reviews">View all reviews</Link>
-        </footer>
-    </Fragment>
+        </Footer>
+    </ReviewsPage>
 );
+
+const ReviewsPage = styled.div`
+    a {
+        text-decoration: none;
+    }
+`;
+
+const Header = styled.header`
+    h1 {
+        font-size: 15px;
+    }
+    div.general-stats {
+        display: flex;
+        justify-content: space-between;
+        div {
+            display: flex;
+            justify-content: flex-start;
+        }
+    }
+`;
+
+const Footer = styled.footer`
+    display: flex;
+    justify-content: center;
+`;

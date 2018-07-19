@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "username": "radu",
+        "company": "hitta.se",
+        "score": 4,
+        "thumb": "",
+        "text": "Ok, at first I was impressed by the ...",
+        "timestamp": "1532010722"
+    },
+    {
+        "id": 2,
+        "username": "diana",
+        "company": "hitta.se",
+        "score": 5,
+        "thumb": "",
+        "text": "Test review text for second comment ...",
+        "timestamp": "1532010945"
+    },
+    {
+        "id": 3,
+        "username": "alex",
+        "company": "hitta.se",
+        "score": 5,
+        "thumb": "",
+        "text": "Test review text for second comment ...",
+        "timestamp": "1532010945"
+    },
+    {
+        "id": 4,
+        "username": "bob",
+        "company": "hitta.se",
+        "score": 2,
+        "thumb": "",
+        "text": "Test review text for second comment ...",
+        "timestamp": "1532010945"
+    },
+    {
+        "id": 2,
+        "username": "john",
+        "company": "hitta.se",
+        "score": 3,
+        "thumb": "",
+        "text": "Test review text for second comment ...",
+        "timestamp": "1532010945"
+    },
+    {
+        "id": 2,
+        "username": "johnny",
+        "company": "hitta.se",
+        "score": 1,
+        "thumb": "",
+        "text": "Test review text for second comment ...",
+        "timestamp": "1532010945"
+    }
+]

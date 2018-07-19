@@ -1,9 +1,18 @@
 {
-  "extends": "airbnb",
-  "rules": {
-    "react/prefer-stateless-function": false,
-    "react/jsx-filename-extension": false,
-    "react/jsx-one-expression-per-line": false,
-    "quotes": 0
-  }
+    "extends": "airbnb",
+    "rules": {
+        "react/prefer-stateless-function": false,
+        "react/jsx-filename-extension": false,
+        "react/jsx-one-expression-per-line": false,
+        "quotes": 0
+    },
+    "parserOptions": {
+        "ecmaVersion": 7,
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "experimentalDecorators": true,
+            "jsx": true
+        },
+        "sourceType": "module"
+    }
 }

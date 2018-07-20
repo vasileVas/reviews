@@ -1,56 +1,51 @@
-import React, { Component, Provider } from 'react';
-import { observable, observe, computed, decorate } from 'mobx';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import React, { Component } from 'react';
+import { observer } from 'mobx-react';
+import { Switch, Route, HashRouter } from 'react-router-dom';
 import Reviews from './components/Reviews';
 import AddReview from './components/AddReview';
-import reviewsData from './data/reviews.json';
+
 import styled from 'styled-components';
+
+import { ReviewsStore, ReviewForm } from './stores';
 
 const AppWrapper = styled.div`
     border: 1px solid blue;
-    margin: auto
+    margin: auto;
     max-width: 300px;
     padding: 15px;
 `;
 
-class ReviewsStore {
-    reviews = reviewsData;
-
-    get totalReviews() {
-        return this.reviews.length;
-    }
-    get totalScore() {
-        const ratingsSum = this.reviews
-            .map(r => r.score)
-            .reduce((a, b) => a + b, 0);
-        return parseFloat(ratingsSum / this.totalReviews).toFixed(1);
-    }
-}
-decorate(ReviewsStore, {
-    reviews: observable,
-    totalReviews: computed
-});
-
-const store = new ReviewsStore();
-
-console.log(store.reviews);
+const reviewsStore = new ReviewsStore();
+const reviewForm = new ReviewForm();
 
 class App extends Component {
+    renderReviewPage() {
+        return <Reviews reviewsStore={reviewsStore} reviewForm={reviewForm} />;
+    }
+    renderAddReviewPage() {
+        return <AddReview reviewForm={reviewForm} />;
+    }
     render() {
         return (
-            <BrowserRouter>
+            <HashRouter>
                 <AppWrapper>
                     <Switch>
                         <Route
                             exact
                             path="/"
-                            component={() => <Reviews store={store} />}
+                            component={this.renderReviewPage}
                         />
-                        <Route path="/reviews" component={Reviews} />
-                        <Route path="/add-review" component={AddReview} />
+                        <Route
+                            path="/reviews"
+                            component={this.renderReviewPage}
+                        />
+                        <Route
+                            path="/add-review"
+                            component={this.renderAddReviewPage}
+                        />
                     </Switch>
                 </AppWrapper>
-            </BrowserRouter>
+            </HashRouter>
         );
     }
 }

@@ -6,6 +6,13 @@ export const GrayedSmallText = styled.span`
     color: #999;
 `;
 
+export const StyledAnchor = styled.a`
+    font-size: 14px;
+    color: #136cb7;
+    text-decoration: none;
+    cursor: pointer;
+`;
+
 export const StyledLink = styled(Link)`
     font-size: 14px;
     color: #136cb7;

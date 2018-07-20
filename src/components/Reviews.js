@@ -1,13 +1,26 @@
 import React, { Fragment, Component } from 'react';
+import { observer } from 'mobx-react';
 import styled from 'styled-components';
 
 import RateReview from './RateReview';
-import LatestReviews from './LatestReviews';
-import { ColoredBox, StyledLink, GrayedSmallText } from '../styles';
+import ReviewsList from './ReviewsList';
+import DisplayReviewsLink from './DisplayReviewsLink';
+import { ColoredBox, StyledAnchor, GrayedSmallText } from '../styles';
 
-class ReviewPage extends Component {
-    render() {
-        const { reviews, totalReviews, totalScore } = this.props.store;
+const ReviewPage = observer(
+    ({
+        reviewsStore: {
+            reviews,
+            totalReviews,
+            totalScore,
+            viewAllReviews,
+            showAllReviews,
+            showLatestReviews
+        },
+        reviewForm: { createReview }
+    }) => {
+        const reviewsToDisplay = viewAllReviews ? reviews : reviews.slice(-3);
+
         return (
             <Fragment>
                 <Header>
@@ -20,20 +33,27 @@ class ReviewPage extends Component {
                                 {totalReviews === 1 ? 'rating' : 'ratings'}
                             </GrayedSmallText>
                         </div>
-                        <StyledLink to="/all-reviews">
-                            View all reviews
-                        </StyledLink>
+                        <DisplayReviewsLink
+                            viewAllReviews={viewAllReviews}
+                            showAllReviews={showAllReviews}
+                            showLatestReviews={showLatestReviews}
+                        />
                     </div>
                 </Header>
-                <RateReview />
-                <LatestReviews reviews={reviews} />
+                <RateReview createReview={createReview} />
+                <ReviewsList reviews={reviewsToDisplay} />
+
                 <Footer>
-                    <StyledLink to="/all-reviews">View all reviews</StyledLink>
+                    <DisplayReviewsLink
+                        viewAllReviews={viewAllReviews}
+                        showAllReviews={showAllReviews}
+                        showLatestReviews={showLatestReviews}
+                    />
                 </Footer>
             </Fragment>
         );
     }
-}
+);
 export default ReviewPage;
 
 const Header = styled.header`

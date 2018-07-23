@@ -5,7 +5,7 @@ import Rating from 'react-rating';
 import { Avatar, StarEmpty, StarFull } from './icons';
 import { GrayedSmallText } from '../styles';
 
-const RateReview = ({ createReview }) => (
+const RateReview = ({ updateScore }) => (
     <RateReviewWrapper>
         <Avatar className="avatar" />
         <div>
@@ -14,7 +14,7 @@ const RateReview = ({ createReview }) => (
                 Share your experience to help others
             </GrayedSmallText>
             <Rating
-                onChange={createReview}
+                onChange={updateScore}
                 className="rating"
                 emptySymbol={<StarEmpty />}
                 fullSymbol={<StarFull />}

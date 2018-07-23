@@ -17,7 +17,8 @@ const ReviewPage = observer(
             showAllReviews,
             showLatestReviews
         },
-        reviewForm: { createReview }
+        reviewForm: { updateScore },
+        history
     }) => {
         const reviewsToDisplay = viewAllReviews ? reviews : reviews.slice(-3);
 
@@ -40,7 +41,12 @@ const ReviewPage = observer(
                         />
                     </div>
                 </Header>
-                <RateReview createReview={createReview} />
+                <RateReview
+                    updateScore={score => {
+                        updateScore(score);
+                        history.push('/add-review');
+                    }}
+                />
                 <ReviewsList reviews={reviewsToDisplay} />
 
                 <Footer>

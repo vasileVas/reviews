@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import { Switch, Route, HashRouter } from 'react-router-dom';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import Reviews from './components/Reviews';
 import AddReview from './components/AddReview';
 
@@ -19,15 +19,21 @@ const reviewsStore = new ReviewsStore();
 const reviewForm = new ReviewForm();
 
 class App extends Component {
-    renderReviewPage() {
-        return <Reviews reviewsStore={reviewsStore} reviewForm={reviewForm} />;
+    renderReviewPage({ history }) {
+        return (
+            <Reviews
+                reviewsStore={reviewsStore}
+                reviewForm={reviewForm}
+                history={history}
+            />
+        );
     }
-    renderAddReviewPage() {
-        return <AddReview reviewForm={reviewForm} />;
+    renderAddReviewPage({ history }) {
+        return <AddReview reviewForm={reviewForm} history={history} />;
     }
     render() {
         return (
-            <HashRouter>
+            <BrowserRouter>
                 <AppWrapper>
                     <Switch>
                         <Route
@@ -45,7 +51,7 @@ class App extends Component {
                         />
                     </Switch>
                 </AppWrapper>
-            </HashRouter>
+            </BrowserRouter>
         );
     }
 }

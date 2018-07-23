@@ -5,27 +5,45 @@ import styled from 'styled-components';
 import { Avatar, StarEmpty, StarFull } from './icons';
 import { GrayedSmallText } from '../styles';
 
-export default observer(({ reviewForm }) => {
-    const score = reviewForm.score;
-    console.log(reviewForm);
-    return (
-        <AddReviewWrapper>
-            <Header>
-                <a>Close</a>
-                <span>Review COMPANY</span>
-                <a>Save</a>
-            </Header>
-            <Rating
-                initialRating={score}
-                emptySymbol={<StarEmpty />}
-                fullSymbol={<StarFull />}
-            />
-            <GrayedSmallText>I love it</GrayedSmallText>
-            <ReviewerName placeholder="Your Name" />
-            <ReviewerText placeholder="Add more details on your experience ..." />
-        </AddReviewWrapper>
-    );
-});
+export default observer(
+    ({
+        reviewForm: {
+            score,
+            scoreLabel,
+            updateScore,
+            saveReview,
+            updateName,
+            updateText,
+            errorMessage
+        },
+        history
+    }) => {
+        return (
+            <AddReviewWrapper>
+                <Header>
+                    <a onClick={() => history.push('/')}>Close</a>
+                    <span>Review COMPANY</span>
+                    <a onClick={saveReview}>Save</a>
+                </Header>
+                <Rating
+                    initialRating={score}
+                    emptySymbol={<StarEmpty />}
+                    fullSymbol={<StarFull />}
+                    onChange={updateScore}
+                />
+                <GrayedSmallText>{scoreLabel}</GrayedSmallText>
+                {errorMessage && (
+                    <GrayedSmallText>{errorMessage}</GrayedSmallText>
+                )}
+                <ReviewerName placeholder="Your Name" onChange={updateName} />
+                <ReviewerText
+                    placeholder="Add more details on your experience ..."
+                    onChange={updateText}
+                />
+            </AddReviewWrapper>
+        );
+    }
+);
 
 const AddReviewWrapper = styled.div`
     display: flex;

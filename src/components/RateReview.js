@@ -1,29 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { observer } from 'mobx-react';
 import styled from 'styled-components';
 import Rating from 'react-rating';
 
 import { Avatar, StarEmpty, StarFull } from './icons';
 import { GrayedSmallText } from '../styles';
 
-const RateReview = ({ updateScore }) => (
-    <RateReviewWrapper>
-        <Avatar className="avatar" />
-        <div>
-            <h2>Rate and review</h2>
-            <GrayedSmallText>
-                Share your experience to help others
-            </GrayedSmallText>
-            <Rating
-                onChange={updateScore}
-                className="rating"
-                emptySymbol={<StarEmpty />}
-                fullSymbol={<StarFull />}
-            />
-        </div>
-    </RateReviewWrapper>
-);
+class RateReview extends Component {
+    updateScore = score => {
+        console.log(this.props);
+        this.props.reviewForm.updateScore(score);
+        this.props.history.push('/add-review');
+    };
 
-export default RateReview;
+    render() {
+        return (
+            <RateReviewWrapper>
+                <Avatar className="avatar" />
+                <div>
+                    <h2>Rate and review</h2>
+                    <GrayedSmallText>
+                        Share your experience to help others
+                    </GrayedSmallText>
+                    <Rating
+                        onChange={this.updateScore}
+                        className="rating"
+                        emptySymbol={<StarEmpty />}
+                        fullSymbol={<StarFull />}
+                    />
+                </div>
+            </RateReviewWrapper>
+        );
+    }
+}
+
+export default observer(RateReview);
 
 const RateReviewWrapper = styled.div`
     svg.avatar {

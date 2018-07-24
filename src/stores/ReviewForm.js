@@ -1,10 +1,15 @@
 import { observable, computed, decorate, action } from 'mobx';
 
 class ReviewForm {
-    name = '';
-    text = '';
+    name;
+    text;
     score = 0;
     errorMessage = '';
+    reviewsStore;
+
+    constructor(reviewsStore) {
+        this.reviewsStore = reviewsStore;
+    }
     updateScore = score => {
         this.score = score;
         this.errorMessage = '';
@@ -32,21 +37,16 @@ class ReviewForm {
         }
     }
     get isFormValid() {
-        const { name, text, score } = this;
-        if (score > 0 && text !== '' && name !== '') {
-            return true;
-        }
-        return false;
+        return !!this.score;
     }
     saveReview = () => {
-        console.log('aaaaa');
         if (!this.isFormValid) {
             this.errorMessage = 'Please add your name and a comment!';
-            console.log('bbbbb', this.errorMessage);
             return;
         }
-        console.log('OK');
         //save the review;
+        // const { name, text, score } = this;
+        // this.reviewsStore.addReview({ name, text, score });
     };
 }
 
@@ -56,6 +56,8 @@ decorate(ReviewForm, {
     score: observable,
     errorMessage: observable,
     updateScore: action,
+    updateName: action,
+    updateText: action,
     scoreLabel: computed,
     isFormValid: computed,
     saveReview: action

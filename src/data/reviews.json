@@ -6,7 +6,7 @@
         "score": 4,
         "thumb": "",
         "text": "Ok, at first I was impressed by the ...",
-        "timestamp": "1532010722"
+        "timestamp": "1532122812093"
     },
     {
         "id": 2,
@@ -15,7 +15,7 @@
         "score": 5,
         "thumb": "",
         "text": "Test review text for second comment ...",
-        "timestamp": "1532010945"
+        "timestamp": "1532222812093"
     },
     {
         "id": 3,
@@ -24,7 +24,7 @@
         "score": 5,
         "thumb": "",
         "text": "Test review text for second comment ...",
-        "timestamp": "1532010945"
+        "timestamp": "1532322812093"
     },
     {
         "id": 4,
@@ -33,7 +33,7 @@
         "score": 2,
         "thumb": "",
         "text": "Test review text for second comment ...",
-        "timestamp": "1532010945"
+        "timestamp": "1532412812093"
     },
     {
         "id": 5,
@@ -42,7 +42,7 @@
         "score": 3,
         "thumb": "",
         "text": "Test review text for second comment ...",
-        "timestamp": "1532010945"
+        "timestamp": "1532422112093"
     },
     {
         "id": 6,
@@ -51,6 +51,6 @@
         "score": 1,
         "thumb": "",
         "text": "Test review text for second comment ...",
-        "timestamp": "1532010945"
+        "timestamp": "1532422812093"
     }
 ]

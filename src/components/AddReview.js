@@ -1,29 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import Rating from 'react-rating';
 import styled from 'styled-components';
 import { Avatar, StarEmpty, StarFull } from './icons';
 import { GrayedSmallText } from '../styles';
 
-export default observer(
-    ({
-        reviewForm: {
-            score,
-            scoreLabel,
-            updateScore,
-            saveReview,
-            updateName,
-            updateText,
-            errorMessage
-        },
-        history
-    }) => {
+class AddReview extends Component {
+    saveReview = () => {
+        this.props.reviewForm.saveReview();
+        this.props.history.push('/');
+    };
+    closeForm = () => {
+        this.props.history.push('/');
+    };
+    updateName = event => {
+        this.props.reviewForm.updateName(event.currentTarget.value);
+    };
+    updateText = event => {
+        this.props.reviewForm.updateText(event.currentTarget.value);
+    };
+    render() {
+        const {
+            reviewForm: {
+                name,
+                text,
+                score,
+                scoreLabel,
+                updateScore,
+                errorMessage
+            }
+        } = this.props;
+
         return (
             <AddReviewWrapper>
                 <Header>
-                    <a onClick={() => history.push('/')}>Close</a>
+                    <a onClick={this.closeForm}>Close</a>
                     <span>Review COMPANY</span>
-                    <a onClick={saveReview}>Save</a>
+                    <a onClick={this.saveReview}>Save</a>
                 </Header>
                 <Rating
                     initialRating={score}
@@ -35,15 +48,21 @@ export default observer(
                 {errorMessage && (
                     <GrayedSmallText>{errorMessage}</GrayedSmallText>
                 )}
-                <ReviewerName placeholder="Your Name" onChange={updateName} />
+                <ReviewerName
+                    placeholder="Your Name"
+                    defaultValue={name}
+                    onChange={this.updateName}
+                />
                 <ReviewerText
                     placeholder="Add more details on your experience ..."
-                    onChange={updateText}
+                    onChange={this.updateText}
                 />
             </AddReviewWrapper>
         );
     }
-);
+}
+
+export default observer(AddReview);
 
 const AddReviewWrapper = styled.div`
     display: flex;

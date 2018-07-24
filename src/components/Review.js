@@ -1,35 +1,39 @@
 import React from 'react';
 import Rating from 'react-rating';
 import styled from 'styled-components';
+import { format, distanceInWords } from 'date-fns';
 import { Avatar, StarEmpty, StarFull } from './icons';
-import { GrayedSmallText } from '../styles';
+import { GrayedSmallText, StyledLink } from '../styles';
 
-const Review = ({
-    username,
-    initialRating,
-    text,
-    company,
-    timestamp,
-    score
-}) => (
-    <ReviewWrapper>
-        <Avatar className="avatar" />
-        <div>
-            <h3>{username}</h3>
-            <ReviewerRating>
-                <Rating
-                    initialRating={score}
-                    emptySymbol={<StarFull size="small" fill="#BBB" />}
-                    fullSymbol={<StarFull size="small" />}
-                />
-                <ReviewTimestamp>
-                    {timestamp} - {company}
-                </ReviewTimestamp>
-            </ReviewerRating>
-            <Text>{text}</Text>
-        </div>
-    </ReviewWrapper>
-);
+const Review = ({ username, text, company, timestamp, score }) => {
+    const reviewDateString = distanceInWords(+timestamp, new Date().getTime());
+    return (
+        <ReviewWrapper>
+            <Avatar className="avatar" />
+            <div>
+                <h3>{username}</h3>
+                <ReviewerRating>
+                    <Rating
+                        initialRating={score}
+                        emptySymbol={<StarFull size="small" fill="#BBB" />}
+                        fullSymbol={<StarFull size="small" />}
+                        readonly
+                    />
+                    <ReviewTimestamp>
+                        {reviewDateString} - {company}
+                    </ReviewTimestamp>
+                </ReviewerRating>
+                {!!text ? (
+                    <Text>{text}</Text>
+                ) : (
+                    <StyledLink to="/add-review">
+                        Describe your experience
+                    </StyledLink>
+                )}
+            </div>
+        </ReviewWrapper>
+    );
+};
 
 export default Review;
 

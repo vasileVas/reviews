@@ -16,7 +16,7 @@ const AppWrapper = styled.div`
 `;
 
 const reviewsStore = new ReviewsStore();
-const reviewForm = new ReviewForm();
+const reviewForm = new ReviewForm(reviewsStore);
 
 class App extends Component {
     renderReviewPage({ history }) {

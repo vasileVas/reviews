@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import styled from 'styled-components';
 
 import RateReview from './RateReview';
+import Review from './Review';
 import ReviewsList from './ReviewsList';
 import DisplayReviewsLink from './DisplayReviewsLink';
 import { ColoredBox, StyledAnchor, GrayedSmallText } from '../styles';
@@ -17,10 +18,11 @@ const ReviewPage = observer(
             showAllReviews,
             showLatestReviews
         },
-        reviewForm: { updateScore },
+        reviewForm,
         history
     }) => {
         const reviewsToDisplay = viewAllReviews ? reviews : reviews.slice(-3);
+        const { name, score, text } = reviewForm;
 
         return (
             <Fragment>
@@ -41,13 +43,19 @@ const ReviewPage = observer(
                         />
                     </div>
                 </Header>
-                <RateReview
-                    updateScore={score => {
-                        updateScore(score);
-                        history.push('/add-review');
-                    }}
-                />
-                <ReviewsList reviews={reviewsToDisplay} />
+                {reviewForm.score > 0 ? (
+                    <Review
+                        username={name || 'Anonym'}
+                        text={text}
+                        company="hitta.se"
+                        timestamp={new Date().getTime()}
+                        score={score}
+                    />
+                ) : (
+                    <RateReview history={history} reviewForm={reviewForm} />
+                )}
+
+                <ReviewsList reviews={reviewsToDisplay.reverse()} />
 
                 <Footer>
                     <DisplayReviewsLink

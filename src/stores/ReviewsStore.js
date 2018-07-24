@@ -1,4 +1,11 @@
-import { observable, computed, decorate, action } from 'mobx';
+import {
+    observable,
+    computed,
+    decorate,
+    action,
+    toJS,
+    isObservableObject
+} from 'mobx';
 import reviewsData from '../data/reviews.json';
 
 class ReviewsStore {
@@ -20,6 +27,17 @@ class ReviewsStore {
     showLatestReviews = () => {
         this.viewAllReviews = false;
     };
+    addReview({ name, text, score }) {
+        this.reviews[this.totalReviews] = {
+            id: Date.now(),
+            username: name,
+            company: 'hitta.se',
+            score,
+            thumb: '',
+            text,
+            timestamp: Date.now()
+        };
+    }
 }
 
 decorate(ReviewsStore, {
@@ -27,7 +45,8 @@ decorate(ReviewsStore, {
     viewAllReviews: observable,
     totalReviews: computed,
     showAllReviews: action,
-    showLatestReviews: action
+    showLatestReviews: action,
+    addReview: action
 });
 
 export { ReviewsStore };

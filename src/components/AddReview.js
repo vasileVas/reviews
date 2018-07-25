@@ -3,12 +3,16 @@ import { observer } from 'mobx-react';
 import Rating from 'react-rating';
 import styled from 'styled-components';
 import { Avatar, StarEmpty, StarFull } from './icons';
-import { GrayedSmallText } from '../styles';
+import { GrayedSmallText, StyledAnchor } from '../styles';
+import Modal from 'react-responsive-modal';
 
 class AddReview extends Component {
+    state = {
+        showModal: false
+    };
     saveReview = () => {
         this.props.reviewForm.saveReview();
-        this.props.history.push('/');
+        this.setState({ showModal: true });
     };
     closeForm = () => {
         this.props.history.push('/');
@@ -18,6 +22,13 @@ class AddReview extends Component {
     };
     updateText = event => {
         this.props.reviewForm.updateText(event.currentTarget.value);
+    };
+    onCloseModal = () => {
+        this.setState({ showModal: false });
+    };
+    onModalConfirm = () => {
+        this.setState({ showModal: false });
+        this.props.history.push('/');
     };
     render() {
         const {
@@ -57,12 +68,52 @@ class AddReview extends Component {
                     placeholder="Add more details on your experience ..."
                     onChange={this.updateText}
                 />
+                <Modal
+                    open={this.state.showModal}
+                    onClose={this.onCloseModal}
+                    center
+                    styles={modalStyles}
+                >
+                    <ModalTitle>Thank you for your review</ModalTitle>
+                    <GrayedSmallText>
+                        You're helping others make smarter decisions every day.
+                    </GrayedSmallText>
+                    <hr />
+                    <ModalButton onClick={this.onModalConfirm}>
+                        Okay!
+                    </ModalButton>
+                </Modal>
             </AddReviewWrapper>
         );
     }
 }
 
 export default observer(AddReview);
+
+const modalStyles = {
+    overlay: {
+        background: 'rgba(0, 0, 0, 0.5)'
+    },
+    closeButton: {
+        display: 'none'
+    },
+    modal: {
+        maxWidth: '230px',
+        borderRadius: '10px',
+        textAlign: 'center',
+        padding: '0px'
+    }
+};
+
+const ModalTitle = styled.h3`
+    font-size: 14px;
+    margin: 20px 0 5px;
+`;
+
+const ModalButton = styled(StyledAnchor)`
+    padding-bottom: 10px;
+    display: block;
+`;
 
 const AddReviewWrapper = styled.div`
     display: flex;

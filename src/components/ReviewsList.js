@@ -12,9 +12,7 @@ const LatestReviews = ({ reviews }) => {
 };
 
 const ReviewsWrapper = styled.div`
-    h2 {
-        font-size: 14px;
-    }
+    margin: 12px 0;
 `;
 
 export default LatestReviews;

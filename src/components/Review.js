@@ -11,7 +11,12 @@ const Review = ({ username, text, company, timestamp, score }) => {
         <ReviewWrapper>
             <Avatar className="avatar" />
             <div>
-                <h3>{username}</h3>
+                <div
+                    style={{ display: 'flex', justifyContent: 'space-between' }}
+                >
+                    <h3>{username}</h3>
+                    <a>...</a>
+                </div>
                 <ReviewerRating>
                     <Rating
                         initialRating={score}
@@ -42,30 +47,29 @@ const ReviewTimestamp = styled(GrayedSmallText)`
 `;
 
 const Text = styled.div`
-    margin-top: 10px;
-    font-size: 14px;
+    margin-top: 5px;
     color: #444;
 `;
 
 const ReviewWrapper = styled.div`
-    svg.avatar {
-        width: 32px;
-    }
-    & > div {
-        margin-left: 10px;
-    }
-    h3 {
-        font-size: 13px;
-        margin: 3px 0 0 0;
-        height: 13px;
-        color: #333;
-    }
-
     display: flex;
     justify-content: flex-start;
     margin-bottom: 10px;
     padding-bottom: 10px;
     border-bottom: 1px solid #eee;
+
+    svg.avatar {
+        width: 32px;
+    }
+    & > div {
+        margin-left: 10px;
+        width: 100%;
+    }
+    h3 {
+        margin: 0 0 3px 0;
+        height: 13px;
+        color: #333;
+    }
 `;
 
 const ReviewerRating = styled.div`

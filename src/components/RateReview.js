@@ -37,6 +37,12 @@ class RateReview extends Component {
 export default observer(RateReview);
 
 const RateReviewWrapper = styled.div`
+    margin-top: 12px;
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
+
     svg.avatar {
         width: 56px;
     }
@@ -45,15 +51,10 @@ const RateReviewWrapper = styled.div`
     }
     h2 {
         font-size: 14px;
-        margin: 4px 0 0 0;
+        margin: 0px 0 3px 0;
         height: 12px;
     }
     .rating {
         margin-top: 12px;
     }
-    margin-top: 10px;
-    display: flex;
-    justify-content: flex-start;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 12px;
 `;

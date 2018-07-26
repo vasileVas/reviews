@@ -45,17 +45,18 @@ class AddReview extends Component {
         return (
             <AddReviewWrapper>
                 <Header>
-                    <a onClick={this.closeForm}>Close</a>
-                    <span>Review COMPANY</span>
-                    <a onClick={this.saveReview}>Save</a>
+                    <StyledAnchor onClick={this.closeForm}>Close</StyledAnchor>
+                    <span>Review Hitta</span>
+                    <StyledAnchor onClick={this.saveReview}>Save</StyledAnchor>
                 </Header>
                 <Rating
                     initialRating={score}
                     emptySymbol={<StarEmpty />}
                     fullSymbol={<StarFull />}
                     onChange={updateScore}
+                    className="rating"
                 />
-                <GrayedSmallText>{scoreLabel}</GrayedSmallText>
+                <ScoreText>{scoreLabel}</ScoreText>
                 {errorMessage && (
                     <GrayedSmallText>{errorMessage}</GrayedSmallText>
                 )}
@@ -105,8 +106,12 @@ const modalStyles = {
     }
 };
 
+const ScoreText = styled(GrayedSmallText)`
+    margin: 15px 0;
+`;
+
 const ModalTitle = styled.h3`
-    font-size: 14px;
+    font-size: 13px;
     margin: 20px 0 5px;
 `;
 
@@ -119,28 +124,40 @@ const AddReviewWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    .rating {
+        padding-left: 25px;
+    }
 `;
 
 const ReviewerName = styled.input`
-    border: none;
     width: 100%;
+    padding: 10px 0 10px 5px;
+    border: none;
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
-    padding: 10px 0px;
 `;
 
 const ReviewerText = styled.textarea`
-    border: none;
+    padding-left: 5px;
     width: 100%;
-    border-bottom: 1px solid #eee;
     height: 60px;
-    font-size: 12px;
     padding: 10px 0px;
+    border: none;
+    border-bottom: 1px solid #eee;
+    resize: none;
+    font-family: arial;
 `;
 
 const Header = styled.div`
+    padding: 10px;
+    width: 100%;
     display: flex;
     flex-direction: row;
-    width: 100%;
     justify-content: space-between;
+    margin-bottom: 15px;
+    background-color: #00aef0;
+    color: #ffffff;
+    a {
+        color: #fff;
+    }
 `;

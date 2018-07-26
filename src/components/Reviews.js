@@ -7,6 +7,7 @@ import Review from './Review';
 import ReviewsList from './ReviewsList';
 import DisplayReviewsLink from './DisplayReviewsLink';
 import { ColoredBox, StyledAnchor, GrayedSmallText } from '../styles';
+import YourReview from './YourReview';
 
 const ReviewPage = observer(
     ({
@@ -44,13 +45,7 @@ const ReviewPage = observer(
                     </div>
                 </Header>
                 {reviewForm.score > 0 ? (
-                    <Review
-                        username={name || 'Anonym'}
-                        text={text}
-                        company="hitta.se"
-                        timestamp={new Date().getTime()}
-                        score={score}
-                    />
+                    <YourReview reviewForm={reviewForm} />
                 ) : (
                     <RateReview history={history} reviewForm={reviewForm} />
                 )}
@@ -71,10 +66,11 @@ const ReviewPage = observer(
 export default ReviewPage;
 
 const Header = styled.header`
-    padding-bottom: 10px;
+    padding-bottom: 12px;
     border-bottom: 1px solid #eee;
     h1 {
-        font-size: 18px;
+        font-size: 15px;
+        margin-bottom: 15px;
     }
     span {
         padding: 7px 0 0 10px;

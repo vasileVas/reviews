@@ -9,10 +9,15 @@ import styled from 'styled-components';
 import { ReviewsStore, ReviewForm } from './stores';
 
 const AppWrapper = styled.div`
-    border: 1px solid blue;
+    border: 1px solid #000;
     margin: auto;
     max-width: 300px;
-    padding: 15px;
+    padding: 20px;
+    h3,
+    h2,
+    div {
+        font-size: 13px;
+    }
 `;
 
 const reviewsStore = new ReviewsStore();

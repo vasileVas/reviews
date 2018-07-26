@@ -7,15 +7,17 @@ export const GrayedSmallText = styled.span`
 `;
 
 export const StyledAnchor = styled.a`
-    font-size: 14px;
-    color: #136cb7;
+    font-size: 13px;
+    font-weight: bold;
+    color: #00aef0;
     text-decoration: none;
     cursor: pointer;
 `;
 
 export const StyledLink = styled(Link)`
-    font-size: 14px;
-    color: #136cb7;
+    font-size: 13px;
+    font-weight: bold;
+    color: #00aef0;
     text-decoration: none;
 `;
 

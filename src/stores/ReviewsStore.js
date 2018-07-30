@@ -1,9 +1,12 @@
 import { observable, computed, decorate, action } from 'mobx';
-import reviewsData from '../data/reviews.json';
 
 class ReviewsStore {
-    reviews = reviewsData;
+    reviews;
     viewAllReviews = false;
+
+    constructor(reviewsData) {
+        this.reviews = reviewsData;
+    }
 
     get totalReviews() {
         return this.reviews.length;

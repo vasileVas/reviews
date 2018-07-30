@@ -7,23 +7,8 @@ import styled from 'styled-components';
 
 import { ReviewsStore, ReviewForm } from './stores';
 
-const AppWrapper = styled.div`
-    margin: auto;
-    padding: 20px;
-    h3,
-    h2,
-    div {
-        font-size: 13px;
-    }
-    @media screen and (max-width: 320px) {
-        width: 300px;
-    }
-    @media screen and (min-width: 500px) {
-        max-width: 500px;
-    }
-`;
-
-const reviewsStore = new ReviewsStore();
+import reviewsData from './data/reviews.json';
+const reviewsStore = new ReviewsStore(reviewsData);
 const reviewForm = new ReviewForm(reviewsStore);
 
 class App extends Component {
@@ -65,3 +50,19 @@ class App extends Component {
 }
 
 export default App;
+
+const AppWrapper = styled.div`
+    margin: auto;
+    padding: 20px;
+    h3,
+    h2,
+    div {
+        font-size: 13px;
+    }
+    @media screen and (max-width: 320px) {
+        width: 300px;
+    }
+    @media screen and (min-width: 500px) {
+        max-width: 500px;
+    }
+`;

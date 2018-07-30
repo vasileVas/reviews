@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import * as React from 'react';
 import { render, Simulate } from 'react-testing-library';
-import Review from '../components/Review';
+import Review from '../../components/Review';
 
 const getComponent = (props = {}) => (
     <Review

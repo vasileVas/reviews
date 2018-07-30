@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import * as React from 'react';
 import { render, fireEvent } from 'react-testing-library';
-import AddReview from '../components/AddReview';
+import AddReview from '../../components/AddReview';
 
 const getComponent = (props = {}) => {
     const reviewForm = {

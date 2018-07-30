@@ -22,7 +22,7 @@ class ReviewForm {
     };
     get allowEdit() {
         const { text, score } = this;
-        return text && score;
+        return Boolean(text && score);
     }
     get scoreLabel() {
         switch (this.score) {

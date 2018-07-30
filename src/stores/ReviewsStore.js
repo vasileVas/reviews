@@ -1,11 +1,4 @@
-import {
-    observable,
-    computed,
-    decorate,
-    action,
-    toJS,
-    isObservableObject
-} from 'mobx';
+import { observable, computed, decorate, action } from 'mobx';
 import reviewsData from '../data/reviews.json';
 
 class ReviewsStore {
@@ -20,6 +13,12 @@ class ReviewsStore {
             .map(r => r.score)
             .reduce((a, b) => a + b, 0);
         return parseFloat(ratingsSum / this.totalReviews).toFixed(1);
+    }
+    get reviewsToDisplay() {
+        const { reviews, viewAllReviews } = this;
+        return viewAllReviews
+            ? [...reviews].reverse()
+            : [...reviews].slice(-3).reverse();
     }
     showAllReviews = () => {
         this.viewAllReviews = true;
@@ -44,6 +43,7 @@ decorate(ReviewsStore, {
     reviews: observable,
     viewAllReviews: observable,
     totalReviews: computed,
+    reviewsToDisplay: computed,
     showAllReviews: action,
     showLatestReviews: action,
     addReview: action

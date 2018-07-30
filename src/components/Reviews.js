@@ -1,12 +1,11 @@
-import React, { Fragment, Component } from 'react';
+import React, { Fragment } from 'react';
 import { observer } from 'mobx-react';
 import styled from 'styled-components';
 
 import RateReview from './RateReview';
-import Review from './Review';
 import ReviewsList from './ReviewsList';
 import DisplayReviewsLink from './DisplayReviewsLink';
-import { ColoredBox, StyledAnchor, GrayedSmallText } from '../styles';
+import { ColoredBox, GrayedSmallText } from '../styles';
 import YourReview from './YourReview';
 
 const ReviewPage = observer(
@@ -16,15 +15,13 @@ const ReviewPage = observer(
             totalReviews,
             totalScore,
             viewAllReviews,
+            reviewsToDisplay,
             showAllReviews,
             showLatestReviews
         },
         reviewForm,
         history
     }) => {
-        const reviewsToDisplay = viewAllReviews ? reviews : reviews.slice(-3);
-        const { name, score, text } = reviewForm;
-
         return (
             <Fragment>
                 <Header>
@@ -50,7 +47,7 @@ const ReviewPage = observer(
                     <RateReview history={history} reviewForm={reviewForm} />
                 )}
 
-                <ReviewsList reviews={reviewsToDisplay.reverse()} />
+                <ReviewsList reviews={reviewsToDisplay} />
 
                 <Footer>
                     <DisplayReviewsLink

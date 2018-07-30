@@ -20,6 +20,10 @@ class ReviewForm {
     updateText = text => {
         this.text = text;
     };
+    get allowEdit() {
+        const { text, score } = this;
+        return text && score;
+    }
     get scoreLabel() {
         switch (this.score) {
             case 5:
@@ -58,6 +62,7 @@ decorate(ReviewForm, {
     updateScore: action,
     updateName: action,
     updateText: action,
+    allowEdit: computed,
     scoreLabel: computed,
     isFormValid: computed,
     saveReview: action

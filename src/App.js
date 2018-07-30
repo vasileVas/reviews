@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { observer } from 'mobx-react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import Reviews from './components/Reviews';
 import AddReview from './components/AddReview';
@@ -9,14 +8,18 @@ import styled from 'styled-components';
 import { ReviewsStore, ReviewForm } from './stores';
 
 const AppWrapper = styled.div`
-    border: 1px solid #000;
     margin: auto;
-    max-width: 300px;
     padding: 20px;
     h3,
     h2,
     div {
         font-size: 13px;
+    }
+    @media screen and (max-width: 320px) {
+        width: 300px;
+    }
+    @media screen and (min-width: 500px) {
+        max-width: 500px;
     }
 `;
 

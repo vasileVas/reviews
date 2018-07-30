@@ -28,29 +28,31 @@
     },
     {
         "id": 4,
-        "username": "bob",
-        "company": "hitta.se",
+        "username": "happy56",
+        "company": "yelp.com",
         "score": 2,
         "thumb": "",
-        "text": "Test review text for second comment ...",
+        "text": "Super good! Love the food!",
         "timestamp": "1532412812093"
     },
     {
         "id": 5,
-        "username": "john",
+        "username": "Jenny Svensson",
         "company": "hitta.se",
         "score": 3,
         "thumb": "",
-        "text": "Test review text for second comment ...",
+        "text":
+            "Maybe a bit too fast! I personally dislike that. Good otherwise.",
         "timestamp": "1532422112093"
     },
     {
         "id": 6,
-        "username": "johnny",
+        "username": "Anonym",
         "company": "hitta.se",
         "score": 1,
         "thumb": "",
-        "text": "Test review text for second comment ...",
+        "text":
+            "Liked it very much - probably one of the best thai restaurants in the city - recommended!",
         "timestamp": "1532422812093"
     }
 ]

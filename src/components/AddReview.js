@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import Rating from 'react-rating';
 import styled from 'styled-components';
-import { Avatar, StarEmpty, StarFull } from './icons';
+import { StarEmpty, StarFull } from './icons';
 import { GrayedSmallText, StyledAnchor } from '../styles';
-import Modal from 'react-responsive-modal';
+import Modal from './Modal';
 
 class AddReview extends Component {
     state = {
@@ -45,9 +45,19 @@ class AddReview extends Component {
         return (
             <AddReviewWrapper>
                 <Header>
-                    <StyledAnchor onClick={this.closeForm}>Close</StyledAnchor>
+                    <StyledAnchor
+                        onClick={this.closeForm}
+                        data-testid="close-btn"
+                    >
+                        Close
+                    </StyledAnchor>
                     <span>Review Hitta</span>
-                    <StyledAnchor onClick={this.saveReview}>Save</StyledAnchor>
+                    <StyledAnchor
+                        onClick={this.saveReview}
+                        data-testid="save-btn"
+                    >
+                        Save
+                    </StyledAnchor>
                 </Header>
                 <Rating
                     initialRating={score}
@@ -67,23 +77,14 @@ class AddReview extends Component {
                 />
                 <ReviewerText
                     placeholder="Add more details on your experience ..."
+                    defaultValue={text}
                     onChange={this.updateText}
                 />
                 <Modal
-                    open={this.state.showModal}
-                    onClose={this.onCloseModal}
-                    center
-                    styles={modalStyles}
-                >
-                    <ModalTitle>Thank you for your review</ModalTitle>
-                    <GrayedSmallText>
-                        You're helping others make smarter decisions every day.
-                    </GrayedSmallText>
-                    <hr />
-                    <ModalButton onClick={this.onModalConfirm}>
-                        Okay!
-                    </ModalButton>
-                </Modal>
+                    showModal={this.state.showModal}
+                    onCloseModal={this.onCloseModal}
+                    onModalConfirm={this.onModalConfirm}
+                />
             </AddReviewWrapper>
         );
     }
@@ -91,33 +92,8 @@ class AddReview extends Component {
 
 export default observer(AddReview);
 
-const modalStyles = {
-    overlay: {
-        background: 'rgba(0, 0, 0, 0.5)'
-    },
-    closeButton: {
-        display: 'none'
-    },
-    modal: {
-        maxWidth: '230px',
-        borderRadius: '10px',
-        textAlign: 'center',
-        padding: '0px'
-    }
-};
-
 const ScoreText = styled(GrayedSmallText)`
     margin: 15px 0;
-`;
-
-const ModalTitle = styled.h3`
-    font-size: 13px;
-    margin: 20px 0 5px;
-`;
-
-const ModalButton = styled(StyledAnchor)`
-    padding-bottom: 10px;
-    display: block;
 `;
 
 const AddReviewWrapper = styled.div`

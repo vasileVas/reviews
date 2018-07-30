@@ -1,11 +1,18 @@
 import React from 'react';
 import Rating from 'react-rating';
 import styled from 'styled-components';
-import { format, distanceInWords } from 'date-fns';
-import { Avatar, StarEmpty, StarFull } from './icons';
+import { distanceInWords } from 'date-fns';
+import { Avatar, StarFull } from './icons';
 import { GrayedSmallText, StyledLink } from '../styles';
 
-const Review = ({ username, text, company, timestamp, score }) => {
+const Review = ({
+    username,
+    text,
+    company,
+    timestamp,
+    score,
+    allowEdit = false
+}) => {
     const reviewDateString = distanceInWords(+timestamp, new Date().getTime());
     return (
         <ReviewWrapper>
@@ -15,7 +22,7 @@ const Review = ({ username, text, company, timestamp, score }) => {
                     style={{ display: 'flex', justifyContent: 'space-between' }}
                 >
                     <h3>{username}</h3>
-                    <a>...</a>
+                    {allowEdit && <EditReview to="/add-review">...</EditReview>}
                 </div>
                 <ReviewerRating>
                     <Rating
@@ -41,6 +48,12 @@ const Review = ({ username, text, company, timestamp, score }) => {
 };
 
 export default Review;
+
+const EditReview = styled(StyledLink)`
+    font-size: 18px;
+    color: #cccccc;
+    cursor: pointer;
+`;
 
 const ReviewTimestamp = styled(GrayedSmallText)`
     margin-left: 10px;

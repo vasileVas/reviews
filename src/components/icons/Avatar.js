@@ -8,7 +8,7 @@ export const Avatar = ({ className = 'avatar' }) => (
         width="32"
         height="32"
         viewBox="0 0 299.997 299.997"
-        fill="#bbb"
+        fill="#ccc"
     >
         <g>
             <g>

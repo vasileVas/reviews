@@ -1,25 +1,26 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
-import { observer } from 'mobx-react';
 import Review from './Review';
 
 export default ({
     reviewForm: {
-        name = 'Anonym',
+        name,
         text,
         company = 'hitta.se',
         score,
+        allowEdit,
         timestamp = new Date().getTime()
     }
 }) => (
     <Fragment>
         <YourReviewTitle>Your Review</YourReviewTitle>
         <Review
-            username={name}
+            username={name || 'Anonymous'}
             text={text}
             company={company}
             timestamp={timestamp}
             score={score}
+            allowEdit={allowEdit}
         />
     </Fragment>
 );
